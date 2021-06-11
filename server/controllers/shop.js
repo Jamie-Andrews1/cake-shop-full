@@ -37,7 +37,7 @@ res.status(201).json({
 // @Route Get /products
 exports.getProducts = asyncHandler (async (req, res, next) => {
   const product = await Product.find()
-  res.send({product})
+  res.send(product)
  })
 
 // Get all products
@@ -45,7 +45,7 @@ exports.getProducts = asyncHandler (async (req, res, next) => {
 exports.getProductsAdmin = asyncHandler (async (req, res, next) => {
   const product = await Product.find()
 
-  res.send({product})
+  res.send(product)
  });
 
  // Get one Product
@@ -70,15 +70,17 @@ exports.editProduct = asyncHandler (async (req, res, next) => {
   // }
   const changes = req.body;
 
-    if (req.file) {
-      changes.image = req.file.path;
-    }
+    // if (req.file) {
+    //   changes.image = req.file.path;
+    // }
 
   product = await Product.findByIdAndUpdate(req.params.id, changes,{
     new: true,
     runValidators: true
   });
-  res.redirect('/admin/products')
+  res.status(201).json({
+    success: true,
+  }); 
 });
 
 // Delete product
@@ -90,10 +92,9 @@ exports.deleteProduct = asyncHandler (async (req, res, next) => {
   }
   const changes = req.body;
 
-    if (req.file) {
-      changes.image = req.file.path;
-    }
-
+    // if (req.file) {
+    //   changes.image = req.file.path;
+    // }
 
   product = await Product.findByIdAndUpdate(req.params.id, changes,{
     new: true,
@@ -101,6 +102,7 @@ exports.deleteProduct = asyncHandler (async (req, res, next) => {
   });
   product.remove();
 
-
-  res.redirect('/admin/products');
+  res.status(201).json({
+    success: true,
+  }); 
 });

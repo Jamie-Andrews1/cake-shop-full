@@ -21,7 +21,7 @@ router
 router
 .route('/:id')
 .get( getProduct)
-.post( upload.single('image'), editProduct)
+.put( upload.single('image'), editProduct)
 .delete( deleteProduct )
 
 module.exports = router;
