@@ -6,6 +6,7 @@ DELETE_PRODUCT,
 UPDATE_PRODUCT
 } from './types'
 
+//Maybe a history.push('/') to other pages
 // Action creators
 export const getProducts = () => async (dispatch) => {
   try {

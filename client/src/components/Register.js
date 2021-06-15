@@ -1,30 +1,49 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState, useDispatch } from 'react'
+import { Link, useHistory,  } from 'react-router-dom'
+import { register } from '../actions/auth'
 
 export default function Auth() {
+  const history = useHistory();
+  const dispatch = useDispatch()
+
+  const initialState = { name: '', email: '', password: '', passwordConfirmation: '' }
+
+  const [formData, setFormData] = useState(initialState)
+  
+  function onSubmit(e){
+    e.preventDefault();
+  
+    dispatch(register(formData, history))
+  }
+
+  function handleChange(e) {
+    setFormData({ ...formData, [e.target.name]: e.target.value })
+  }
+
   return (
     <div className="container">
-      <div class="columns is-centered">
-          <div class="column is-one-quarter">
-            <form method="POST">
-              <h1 class="title">Register</h1>
-              <div class="field">
-                <label class="label">Name</label>
-                <input class="input" placeholder="Name" name="name" />
+      <div className="columns is-centered">
+          <div className="column is-one-quarter">
+            <form onSubmit={onSubmit}>
+              <h1 className="title">Register</h1>
+              <div className="field">
+                <label className="label">Name</label>
+                <input className="input" placeholder="Name" 
+                name="name" onChange={handleChange} />
               </div>
-              <div class="field">
-                <label class="label">Email</label>
-                <input class="input" placeholder="Email" name="email" />
+              <div className="field">
+                <label className="label">Email</label>
+                <input className="input" placeholder="Email" name="email" onChange={handleChange} />
               </div>
-              <div class="field">
-                <label class="label">Password</label>
-                <input class="input" placeholder="Password" name="password" type="password" />
+              <div className="field">
+                <label className="label">Password</label>
+                <input className="input" placeholder="Password" name="password" onChange={handleChange} type="password" />
               </div>
-              <div class="field">
-                <label class="label">Password Confirmation</label>
-                <input class="input" placeholder="Password Confirmation" name="passwordConfirmation" type="password" />
+              <div className="field">
+                <label className="label">Password Confirmation</label>
+                <input className="input" placeholder="Password Confirmation" name="passwordConfirmation" onChange={handleChange} type="password" />
               </div>
-              <button class="button is-primary">Submit</button>
+              <button className="button is-primary">Submit</button>
             </form>
             <Link to="/auth/signin">Have an account? Sign In</Link>
           </div>
