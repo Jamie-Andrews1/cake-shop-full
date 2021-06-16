@@ -5,7 +5,7 @@ import Navbar from './Navbar';
 import Products from './Products';
 import AdminProducts from './AdminProducts';
 import Register from './Register';
-import SignIn from './SignIn';
+import LogIn from './LogIn';
 import history from '../history'
 import { Router, Route, Switch} from 'react-router-dom';
 import Form from './Form'
@@ -29,7 +29,7 @@ export default function App() {
         <Route path="/admin" exact component={Form} />
         <Route path="/admin/products" exact component={AdminProducts}/> 
         <Route path="/auth" exact component={Register}/> 
-        <Route path="/auth/signin" exact component={SignIn}/> 
+        <Route path="/auth/signin" exact component={LogIn}/> 
         </Switch>
       </div>
     </Router>

@@ -1,10 +1,11 @@
-import React, { useState, useDispatch } from 'react'
+import React, { useState } from 'react'
+import { useDispatch } from 'react-redux';
 import { Link, useHistory,  } from 'react-router-dom'
 import { register } from '../actions/auth'
 
 export default function Auth() {
   const history = useHistory();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const initialState = { name: '', email: '', password: '', passwordConfirmation: '' }
 
@@ -12,7 +13,7 @@ export default function Auth() {
   
   function onSubmit(e){
     e.preventDefault();
-  
+    
     dispatch(register(formData, history))
   }
 
