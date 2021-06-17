@@ -7,7 +7,7 @@ import AdminProducts from './AdminProducts';
 import Register from './Register';
 import LogIn from './LogIn';
 import history from '../history'
-import { Router, Route, Switch} from 'react-router-dom';
+import { Router, Route, Switch } from 'react-router-dom';
 import Form from './Form'
 import '../styles/style.css'
 

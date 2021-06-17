@@ -33,6 +33,7 @@ h1 {
   background-color: rgb(235, 231, 241);
   display: flex;
   flex-direction: column;
+  margin-bottom: 1rem;
 }
 .auth a {
   color: black;
@@ -104,4 +105,15 @@ img {
 }
 .total {
   align-self: flex-end;
+}
+.user {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  padding: 1rem;
+}
+.user button {
+  margin-left: 2rem;
+  max-width: fit-content;
+  font-weight: 600;
 }

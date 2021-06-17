@@ -2,6 +2,10 @@ import axios from 'axios';
 
 const API = axios.create({ baseURL: 'http://localhost:5000/api'})
 
+if(localStorage.getItem('person')){
+API.defaults.headers.common['Authorization'] = `Bearer ${JSON.parse(localStorage.getItem('person')).token}`
+}
+
 // Products apis
 export const fetchProducts = () => API.get('/products');
 
