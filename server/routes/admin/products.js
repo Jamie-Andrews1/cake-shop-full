@@ -15,13 +15,13 @@ const router = express.Router();
 
 router
 .route('/')
-.post( upload.single('image'), createProduct)
-.get( getProductsAdmin)
+.post(protect, upload.single('image'), createProduct)
+.get(protect, getProductsAdmin)
 
 router
 .route('/:id')
-.get( getProduct)
-.put( upload.single('image'), editProduct)
-.delete( deleteProduct )
+.get(protect, getProduct)
+.put(protect, upload.single('image'), editProduct)
+.delete(protect, deleteProduct)
 
 module.exports = router;

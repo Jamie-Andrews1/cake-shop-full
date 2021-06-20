@@ -27,7 +27,7 @@ exports.createCart = asyncHandler(async (req, res, next) => {
     cart.subTotal = cart.items.map(item => item.total).reduce((acc, next) => acc + next);
   }
   cart = await cart.save();
-      return   res.redirect('/carts/cart');
+      
    }else{
     // Create new cart
   const newCart = await Cart.create({
@@ -35,16 +35,16 @@ exports.createCart = asyncHandler(async (req, res, next) => {
     items: [{ productId, title, quantity: 1, price, total: parseFloat(quantity * price)}],
     subTotal: parseFloat(price * quantity)
   });
-          return res.redirect('/carts/cart')
+          return res.status(201).json({
+                  success: true,
+                        }); 
   }
 });
 
 exports.getCart = asyncHandler (async (req, res, next) => {
   const cart = await Cart.find({user: user.id});
   
-  for(let items of cart){
-  res.send(cartTemplate(items))
-  }
+  res.send(cart)
 });
 
 exports.deleteItem = asyncHandler (async (req, res, next) => {
@@ -56,5 +56,6 @@ exports.deleteItem = asyncHandler (async (req, res, next) => {
     { $pull: { items: { _id: id }}},
     { 'new': true }
   );
-  res.redirect('/carts/cart')
-  });
+  res.status(200).json({
+    success: true,
+          });   });

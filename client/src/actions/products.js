@@ -6,7 +6,6 @@ DELETE_PRODUCT,
 UPDATE_PRODUCT
 } from './types'
 
-//Maybe a history.push('/') to other pages
 // Action creators
 export const getProducts = () => async (dispatch) => {
   try {
@@ -45,6 +44,6 @@ export const deleteProduct = (id) => async (dispatch) => {
 
     dispatch({ type: DELETE_PRODUCT, payload: id})
   } catch (error) {
-      console.log(error)
+      <h3 className="error">{error.message}</h3>
   }
 }

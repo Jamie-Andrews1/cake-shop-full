@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux'
+import { useHistory } from 'react-router-dom';
 import { createProduct, updateProduct } from '../actions/products';
 import FileBase64 from 'react-file-base64';
 import '../styles/main.css'
@@ -9,6 +10,8 @@ const [productData, setProductData] = useState({
   title: '', price: '', image: ''
 })
   let currentId = currentProduct.location.params
+
+  const history = useHistory();
 
   const prod = useSelector((state) => currentId ? state.products.find((p) => p._id === currentId): null);
 
@@ -24,8 +27,14 @@ const [productData, setProductData] = useState({
 
     if(currentId){
       dispatch(updateProduct(currentId, productData))
+      
+      history.push('/admin/products')
+
     } else {
       dispatch(createProduct(productData));
+
+      history.push('/admin/products')
+
     }
       clear()
   };
