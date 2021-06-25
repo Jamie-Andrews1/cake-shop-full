@@ -21,13 +21,15 @@ exports.createCart = asyncHandler(async (req, res, next) => {
     productItem.quantity+=1;
     productItem.total = parseFloat(productItem.quantity * price);
     cart.items[itemIndex] = productItem;
-  } else {
+    } else {
     // Add new item if product does'nt exist
     cart.items.push({productId, title, quantity: 1, price, total: parseFloat(quantity * price)})
     cart.subTotal = cart.items.map(item => item.total).reduce((acc, next) => acc + next);
   }
   cart = await cart.save();
-      
+  return res.status(201).json({
+    success: true
+          }); 
    }else{
     // Create new cart
   const newCart = await Cart.create({
@@ -44,8 +46,10 @@ exports.createCart = asyncHandler(async (req, res, next) => {
 exports.getCart = asyncHandler (async (req, res, next) => {
   const cart = await Cart.find({user: user.id});
   
-  res.send(cart)
-});
+    for(let items of cart){
+      res.send(items)
+    }
+    });
 
 exports.deleteItem = asyncHandler (async (req, res, next) => {
   

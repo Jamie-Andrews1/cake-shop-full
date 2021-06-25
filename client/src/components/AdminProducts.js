@@ -1,12 +1,14 @@
 import React  from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import '../styles/main.css'
-import { Link } from 'react-router-dom';
-import { deleteProduct } from '../actions/products';
+import { Link, useHistory } from 'react-router-dom';
+import { deleteProduct, getProducts } from '../actions/products';
 
 
 export default function AdminProduct() {
   const products = useSelector((state) => state.products)
+
+  const history = useHistory()
 
   const dispatch = useDispatch();
 
@@ -43,7 +45,8 @@ export default function AdminProduct() {
             </Link>
           </td>
           <td>
-              <button onClick={() => dispatch(deleteProduct(product._id))} className="button is-danger">Delete</button>
+          <button onClick={() => dispatch(deleteProduct(product._id))}
+              className="button is-danger">Delete</button>
           </td>
         </tr>
         ))}

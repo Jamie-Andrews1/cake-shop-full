@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux';
 import { getProducts } from '../actions/products';
+import { getCart } from '../actions/cart';
 import Navbar from './Navbar';
 import Products from './Products';
 import Cart from './Cart';
@@ -19,6 +20,8 @@ export default function App() {
   
   useEffect(() => {
     dispatch(getProducts());
+    dispatch(getCart());
+
   }, [myHistory, dispatch]) 
 
   return (

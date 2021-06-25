@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { createCart } from '../actions/cart';
+import { useHistory } from 'react-router-dom';
 import '../styles/style.css'
 
 
@@ -8,16 +9,16 @@ export default function Product({ product }) {
 const [cartData, setCartData] = useState({ id: ''})
 
 const dispatch = useDispatch();
-const currentId = cartData.id
-
-const item = useSelector((state) => currentId ? state.products.find((p) => p._id === currentId): null);
-
+const history = useHistory()
 
   function onSubmit(e) {
     e.preventDefault();
 
-    dispatch(createCart(item))
+    dispatch(createCart(cartData))
+
+    history.push('/cart')
   }
+
   return (
     <div className="cake">
       <img src={product.image} alt=""/>
@@ -27,7 +28,7 @@ const item = useSelector((state) => currentId ? state.products.find((p) => p._id
       </ul>
     <footer className="card-footer">
       <form onSubmit={onSubmit}>
-      <button onClick={() => setCartData({id: product._id})} className="button is-secondary" type="submit">Add to Cart</button>
+      <button onClick={() => setCartData({productId: product._id, title: product.title, quantity: product.quantity, price: product.price})} className="button is-secondary" type="submit">Add to Cart</button>
       </form>
     </footer>
   </div>

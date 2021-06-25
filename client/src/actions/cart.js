@@ -1,21 +1,26 @@
 import * as api from '../api';
+import {
+  FETCH_CART,
+  CREATE_CART,
+  DELETE_CART
+} from './types'
 
 export const getCart = () => async (dispatch) => {
   try {
     const { data } = await api.fetchCart();
 
-    dispatch({ type: 'FETCH_CART', payload: data });
+    dispatch({ type: FETCH_CART, payload: data });
 
   } catch (error) {
     console.log(error)
   }
 }
 
-export const createCart = (bean) => async (dispatch) => {
+export const createCart = (cart) => async (dispatch) => {
   try {
-    const {data} = await api.createCart(bean);
+    const {data} = await api.createCart(cart);
 
-    dispatch({ type: 'CREATE_CART', payload: data })
+    dispatch({ type: CREATE_CART, payload: data })
   } catch (error) {
     console.log(error)
   }
@@ -25,8 +30,8 @@ export const deleteCart = (id) => async (dispatch) => {
   try {
     await api.deleteCart(id)
 
-    dispatch({ type: 'DELETE_CART', payload: id})
+    dispatch({ type: DELETE_CART, payload: id})
   } catch (error) {
-      <h3 className="error">{error.message}</h3>
+      console.log(error)
   }
 }

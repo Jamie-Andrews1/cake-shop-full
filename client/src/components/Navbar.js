@@ -72,11 +72,6 @@ export default function Navbar() {
           </li>
           </>
            : null}
-          {/* <li>
-            <Link to="/auth">
-              Authorization
-            </Link>
-          </li> */}
         </ul>
       </nav>
     </div>
