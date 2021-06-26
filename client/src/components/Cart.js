@@ -37,6 +37,7 @@ export default function Cart() {
     <div id="cart" className="container" key={item._id}>
       
       <div className="cart-item">
+
         <h3 className="subtitle">{item.title}</h3>
         <div className="price">
            Price: £{item.price} 

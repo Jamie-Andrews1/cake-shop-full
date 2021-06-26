@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom';
-import { createProduct, getProducts, updateProduct } from '../actions/products';
+import { createProduct, updateProduct } from '../actions/products';
 import FileBase64 from 'react-file-base64';
 import '../styles/main.css'
 
@@ -28,17 +28,16 @@ const [productData, setProductData] = useState({
     if(currentId){
       dispatch(updateProduct(currentId, productData))
       
-      dispatch(getProducts())
-
       history.push('/admin/products')
+
+      window.location.reload()
 
     } else {
       dispatch(createProduct(productData));
 
-      dispatch(getProducts())
-
       history.push('/admin/products')
 
+      window.location.reload()
     }
       clear()
   };
