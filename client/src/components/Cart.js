@@ -9,13 +9,21 @@ export default function Cart() {
   const {items} = useSelector((state) => state.cart)
 
   console.log(items)
-
-  
-  const totalPrice = items.reduce((prev, item) => {
+  let totalPrice = null
+  if(items) {
+   totalPrice = items.reduce((prev, item) => {
     return prev + item.quantity * item.price;
   }, 0).toFixed(2);
+}
+  
+  function delCart(prod) {
+    dispatch(deleteCart(prod))
+
+    window.location.reload()
+  }
 
   return (
+  items ? 
   <div className="columns is-centered">
       <div className="column is-four-fifths">
           <h3 className="subtitle"><b>Shopping Cart</b></h3>
@@ -23,7 +31,7 @@ export default function Cart() {
           <h3>Back</h3>
           </Link>
           <div>
-      {items
+  {items
   .map((item) => (
     <div>
     <div id="cart" className="container" key={item._id}>
@@ -37,11 +45,11 @@ export default function Cart() {
            Quantity: {item.quantity}
           </div>
           <div className="total">
-           Total: £{item.total}
+           Total: £{item.total.toFixed(2)}
           </div>
       
         <div className="remove">
-              <button onClick={() => dispatch(deleteCart(item._id))} className="button is-danger"> &times;
+              <button onClick={() => (delCart(item._id))} className="button is-danger"> &times;
               </button>
         </div>
       </div>
@@ -49,7 +57,7 @@ export default function Cart() {
         </div>
         )
       )
-    }
+     }
       <div className="total">
             <div className="message-header">
               Total
@@ -60,5 +68,6 @@ export default function Cart() {
     </div>
   </div>
 </div>
+: <div className="columns is-centered"><h2 style={{marginTop: "2rem"}}><b style={{color:"red"}}>Cart is Empty!! </b></h2></div>
   )
 }

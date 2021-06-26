@@ -6,8 +6,6 @@ const connectDB = require('./config/db');
 const colors = require('colors');
 const cors = require('cors');
 const cookieParser  = require('cookie-parser');
-// const session = require('express-session');
-// const MongoStore = require('connect-mongo').default;
 
 // Route files
 const productsRouter = require('./routes/products');
@@ -42,22 +40,6 @@ app.use('/api/carts', cartsRouter);
 app.use('/api/admin', adminProductsRouter);
 app.use('/api/auth', authRouter);
 
-// session storage set up 
-
-// const sessionStorage = MongoStore.create({
-//   mongoUrl: process.env.MONGO_URI,
-//   ttl: 1 * 24 * 60 * 60 // = 1 days. Default
-// })
-
-// app.use(session({
-//   secret: 'some secret',
-//   resave: true,
-//   saveUninitialized: false,
-//   store: sessionStorage,
-//   cookie: {
-//     maxAge: 1000 * 60 * 60 * 24 // 1 day cookie
-//   }
-// }));
 
 app.listen(5000, () => {
   console.log('listening on port 5000'.brightMagenta);

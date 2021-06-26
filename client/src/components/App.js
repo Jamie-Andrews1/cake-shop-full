@@ -11,7 +11,6 @@ import LogIn from './LogIn';
 import history from '../history'
 import { Router, Route, Switch, useHistory } from 'react-router-dom';
 import Form from './Form'
-import '../styles/style.css'
 
 export default function App() {
   const dispatch = useDispatch();

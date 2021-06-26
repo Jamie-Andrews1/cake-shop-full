@@ -17,6 +17,7 @@ const history = useHistory()
     dispatch(createCart(cartData))
 
     history.push('/cart')
+    window.location.reload()
   }
 
   return (
@@ -24,7 +25,7 @@ const history = useHistory()
       <img src={product.image} alt=""/>
       <ul className="desc">
         <li className="title">{product.title}</li>
-        <li className="price">£{product.price}</li>
+        <li className="price">£{product.price.toFixed(2)}</li>
       </ul>
     <footer className="card-footer">
       <form onSubmit={onSubmit}>

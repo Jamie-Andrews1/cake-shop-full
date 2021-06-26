@@ -28,6 +28,8 @@ const [productData, setProductData] = useState({
     if(currentId){
       dispatch(updateProduct(currentId, productData))
       
+      dispatch(getProducts())
+
       history.push('/admin/products')
 
     } else {

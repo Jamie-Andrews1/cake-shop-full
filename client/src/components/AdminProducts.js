@@ -1,23 +1,27 @@
 import React  from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import '../styles/main.css'
-import { Link, useHistory } from 'react-router-dom';
-import { deleteProduct, getProducts } from '../actions/products';
+import { Link } from 'react-router-dom';
+import { deleteProduct } from '../actions/products';
 
 
 export default function AdminProduct() {
   const products = useSelector((state) => state.products)
 
-  const history = useHistory()
-
   const dispatch = useDispatch();
+
+  function delProduct(prod) {
+    dispatch(deleteProduct(prod))
+
+    window.location.reload()
+  }
 
   return (
     <div>
       <div className="columns is-centered">
-        <div className="column is-half">
+        <div className="column is-one-third">
         <div className="control">
-          <h1 className="subtitle">Products</h1>  
+          <h1 className="subtitle">Products</h1>
           <Link to="/admin" className="button is-primary">New Product
           </Link>
         </div>
@@ -34,7 +38,7 @@ export default function AdminProduct() {
           {products.map((product) => (
           <tr key={product._id}>
           <td>{product.title}</td>
-          <td>{product.price}</td>
+          <td>{product.price.toFixed(2)}</td>
           <td>
           <Link to={{
             pathname:"/admin", 
@@ -45,7 +49,7 @@ export default function AdminProduct() {
             </Link>
           </td>
           <td>
-          <button onClick={() => dispatch(deleteProduct(product._id))}
+          <button onClick={() => delProduct(product._id)}
               className="button is-danger">Delete</button>
           </td>
         </tr>
