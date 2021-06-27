@@ -1,4 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap");
+html {
+  background-color: rgb(235, 231, 241);
+}
 * {
   box-sizing: border-box;
   margin: 0;
