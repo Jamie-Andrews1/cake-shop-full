@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { getProducts } from '../actions/products';
 import { getCart } from '../actions/cart';
@@ -8,9 +8,9 @@ import Cart from './Cart';
 import AdminProducts from './AdminProducts';
 import Register from './Register';
 import LogIn from './LogIn';
-import history from '../history'
+import history from '../history';
 import { Router, Route, Switch, useHistory } from 'react-router-dom';
-import Form from './Form'
+import MyForm from './Form';
 
 export default function App() {
   const dispatch = useDispatch();
@@ -32,13 +32,13 @@ export default function App() {
         <Switch>
         <Route path="/" exact component={Products} />
         <Route path="/cart" exact component={Cart} />
-        <Route path="/admin" exact component={Form} />
+        <Route path="/admin" exact component={MyForm} />
         <Route path="/admin/products" exact component={AdminProducts}/> 
         <Route path="/auth" exact component={Register}/> 
         <Route path="/auth/signin" exact component={LogIn}/> 
         </Switch>
       </div>
     </Router>
-    </div>
+   </div>
   )
 }

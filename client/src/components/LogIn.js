@@ -1,43 +1,70 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useDispatch } from 'react-redux';
 import { Link, useHistory,  } from 'react-router-dom';
 import { signIn } from '../actions/auth'
+import { Form, Field } from 'react-final-form'
 
 export default function LogIn() {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const initialState = { name: '', email: ''};
-
-  const [formData, setFormData] = useState(initialState)
-
-  function onSubmit(e){
-    e.preventDefault();
+  function onSubmit(values){
     
-    dispatch(signIn(formData, history))
-  }
+    dispatch(signIn(values, history))
 
-  function handleChange(e) {
-    setFormData({ ...formData, [e.target.name]: e.target.value })
   }
 
   return (
     <div className="container">
-        <div className="columns is-centered">
-          <div className="column is-half">
-          <form onSubmit={onSubmit} >
+      <div className="columns is-centered">
+        <div className="column is-half">
+        <Form 
+          onSubmit={onSubmit}
+          validate={values => {
+            const errors = {}
+            const val = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/
+            console.log(values.password)
+            if (!val.test(values.email)) {
+              errors.email = 'Not a valid email'
+            } 
+            const pass = /[\w.+$%-/!]{7,14}/
+            if (!pass.test(values.password)) {
+              errors.password = 'must be at least 6 characters'
+            }
+            return errors
+          }}
+          render={({
+            handleSubmit,
+            
+          }) => (
+          <form onSubmit={handleSubmit} >
             <h1 className="title">Sign in</h1>
+            <Field name="email">
+            {({ input, meta }) => (
             <div className="field">
               <label className="label">Email</label>
-              <input required className="input" placeholder="Email" name="email" onChange={handleChange}/>
+              <input {...input} className="input" placeholder="Email" name="email" />
+              {(meta.error || meta.submitError) && meta.touched && (
+              <span style={{color:'red', fontWeight: 600}}>{meta.error || meta.submitError}</span>)}
             </div>
+            )}
+            </Field>
+            <Field name="password">
+            {({ input, meta }) => (
             <div className="field">
               <label className="label">Password</label>
-              <input required className="input" placeholder="Password" name="password" type="password" onChange={handleChange} />
+              <input {...input} className="input" placeholder="Password" name="password" type="password"/>
+              {(meta.error || meta.submitError) && meta.touched && (
+                  <span style={{color:'red', fontWeight: 600}}>{meta.error || meta.submitError}</span>
+                )}
             </div>
+            )}
+            </Field>
             <button className="button is-primary">Submit</button>
+            <Link to="/auth"> Need an account? Sign Up</Link>    
           </form>
-            <Link to="/auth">Need an account? Sign Up</Link>    
+            )}
+          />
         </div>
       </div>  
     </div>

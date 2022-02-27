@@ -15,6 +15,7 @@ export const register = (formData, history) => async (dispatch) => {
      dispatch({ type: REGISTER, payload: data })
 
      history.push('/')
+     window.alert('registered')
   } catch (error) {
     console.log(error)
   }
@@ -27,6 +28,7 @@ export const signIn = (formData, history) => async (dispatch) => {
      dispatch({ type: SIGN_IN, payload: data })
 
      history.push('/')
+     window.location.reload()
   } catch (error) {
     console.log(error)
   }

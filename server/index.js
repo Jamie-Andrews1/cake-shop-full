@@ -14,6 +14,7 @@ const adminProductsRouter = require('./routes/admin/products');
 const authRouter = require('./routes/admin/auth');
 
 const app = express();
+
 // Body parser
 app.use(express.json());
 // Load env vars

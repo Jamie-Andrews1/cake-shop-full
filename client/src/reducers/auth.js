@@ -8,6 +8,7 @@ const INITIAL_STATE = {
   isSignedIn: null,
   userId: null
 }
+
 // Sort out this to save to local storage. Also need to tell the state in the navbar.
 
 export default function reducer(auth = INITIAL_STATE, action){

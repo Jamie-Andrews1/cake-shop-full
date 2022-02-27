@@ -8,7 +8,6 @@ export default function Cart() {
 
   const {items} = useSelector((state) => state.cart)
 
-  console.log(items)
   let totalPrice = null
   if(items) {
    totalPrice = items.reduce((prev, item) => {

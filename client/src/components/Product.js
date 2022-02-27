@@ -4,7 +4,6 @@ import { createCart } from '../actions/cart';
 import { useHistory } from 'react-router-dom';
 import '../styles/style.css'
 
-
 export default function Product({ product }) {
 const [cartData, setCartData] = useState({ id: ''})
 
@@ -15,7 +14,7 @@ const history = useHistory()
     e.preventDefault();
 
     dispatch(createCart(cartData))
-
+  
     history.push('/cart')
     window.location.reload()
   }
@@ -29,7 +28,13 @@ const history = useHistory()
       </ul>
     <footer className="card-footer">
       <form onSubmit={onSubmit}>
-      <button onClick={() => setCartData({productId: product._id, title: product.title, quantity: product.quantity, price: product.price})} className="button is-secondary" type="submit">Add to Cart</button>
+      <button onClick={() => setCartData({
+        productId: product._id, 
+        title: product.title, 
+        quantity: product.quantity, 
+        price: product.price
+      })} 
+        className="button is-secondary" type="submit">Add to Cart</button>
       </form>
     </footer>
   </div>

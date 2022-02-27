@@ -3,6 +3,7 @@ import {
   CREATE_CART,
   DELETE_CART
 } from '../actions/types';
+
 // having problems with using array methods maybe try object methods
 export default function reducer(items = [], action) {
   switch(action.type) {

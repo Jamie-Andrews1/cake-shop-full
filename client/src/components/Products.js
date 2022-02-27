@@ -20,7 +20,7 @@ export default function Products () {
       <div className="cake-wrapper">
       {products.map((product) => (
         <div key={product._id}>
-          {product.title.toLowerCase().indexOf(text) !== -1 ? 
+          {product.title.toLowerCase().indexOf(text.toLowerCase()) !== -1 ? 
         <Product product={product} />
           : null}
       </div>

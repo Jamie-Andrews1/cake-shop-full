@@ -31,7 +31,6 @@ export default function Navbar() {
   }
   useEffect(() => {
     // To remove user if token has expired
-
     // const token = user.token
     // if(token) {
     //   const decodedToken = decode(token);
@@ -39,7 +38,7 @@ export default function Navbar() {
     //   if(decodedToken.exp * 1000 < new Date().getTime()) logout();
     // }
 
-    setUser(JSON.parse(localStorage.getItem('person')))
+    // setUser(JSON.parse(localStorage.getItem('person')))
   }, [location]);
 
 
