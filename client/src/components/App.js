@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { getProducts } from '../actions/products';
-import { getCart } from '../actions/cart';
 import Navbar from './Navbar';
 import Products from './Products';
 import Cart from './Cart';
@@ -11,17 +10,20 @@ import LogIn from './LogIn';
 import history from '../history';
 import { Router, Route, Switch, useHistory } from 'react-router-dom';
 import MyForm from './Form';
+import ErrorNotification from './ErrorNotification';
+import { SuccessNotification } from './SuccessNotification';
 
 export default function App() {
+
   const dispatch = useDispatch();
 
   const myHistory = useHistory();
   
   useEffect(() => {
-    dispatch(getProducts());
-    dispatch(getCart());
+    dispatch(getProducts());   
+    
 
-  }, [myHistory, dispatch]) 
+  }, [myHistory, dispatch])
 
   return (
     <div>
@@ -29,6 +31,8 @@ export default function App() {
     <Router history={history}>
       <div>
       <Navbar />
+        <SuccessNotification />
+        <ErrorNotification />
         <Switch>
         <Route path="/" exact component={Products} />
         <Route path="/cart" exact component={Cart} />

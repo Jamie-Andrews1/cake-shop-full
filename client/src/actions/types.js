@@ -9,4 +9,6 @@ export const REGISTER = 'REGISTER';
 export const FETCH_CART = 'FETCH_CART';
 export const CREATE_CART = 'CREATE_CART';
 export const DELETE_CART = 'DELETE_CART';
-
+export const SIGN_IN_ERROR = 'SIGN_IN_ERROR';
+export const HIDE_ERROR = "HIDE_ERROR";
+export const HIDE_SUCCESS = "HIDE_SUCCESS"

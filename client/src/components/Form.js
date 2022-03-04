@@ -6,7 +6,6 @@ import FileBase64 from 'react-file-base64';
 import { Form, Field } from 'react-final-form'
 import '../styles/main.css'
 
-
 export default function MyForm(currentProduct){
 const [productData, setProductData] = useState({
   title: '', price: '', image: ''
@@ -23,7 +22,6 @@ const [productData, setProductData] = useState({
     if(prod) 
       setProductData(prod)
   }, [prod]) 
-
 
   function clear() {
     currentId = null
@@ -48,7 +46,6 @@ const [productData, setProductData] = useState({
      window.location.reload()
    }
    clear()
- 
 }
 
 return (
@@ -59,7 +56,7 @@ return (
       initialValues={productData}
       validate={(values) => {
       const errors = {};
-
+      
       if(!values.title) {
         errors.title = 'You must enter a title'
       }

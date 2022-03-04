@@ -122,3 +122,7 @@ img {
   max-width: fit-content;
   font-weight: 600;
 }
+.formErr {
+  color: "red";
+  font-weight: 600;
+}

@@ -1,17 +1,17 @@
-import React from 'react'
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useHistory,  } from 'react-router-dom';
-import { signIn } from '../actions/auth'
-import { Form, Field } from 'react-final-form'
+import { signIn } from '../actions/auth';
+import { Form, Field } from 'react-final-form';
 
 export default function LogIn() {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  function onSubmit(values){
-    
-    dispatch(signIn(values, history))
+  async function onSubmit(values){
 
+    dispatch(signIn(values, history))
+  
   }
 
   return (
@@ -23,7 +23,6 @@ export default function LogIn() {
           validate={values => {
             const errors = {}
             const val = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/
-            console.log(values.password)
             if (!val.test(values.email)) {
               errors.email = 'Not a valid email'
             } 

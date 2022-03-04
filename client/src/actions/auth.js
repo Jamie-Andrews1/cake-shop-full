@@ -2,9 +2,10 @@ import * as api from '../api';
 import  {
   REGISTER,
   SIGN_IN,
-  LOG_OUT
-} from './types'
-
+  LOG_OUT,
+  SIGN_IN_ERROR,
+  HIDE_SUCCESS
+} from './types';
 
 // Action creators
 // Register action
@@ -15,7 +16,6 @@ export const register = (formData, history) => async (dispatch) => {
      dispatch({ type: REGISTER, payload: data })
 
      history.push('/')
-     window.alert('registered')
   } catch (error) {
     console.log(error)
   }
@@ -23,14 +23,18 @@ export const register = (formData, history) => async (dispatch) => {
 //  SignIn action
 export const signIn = (formData, history) => async (dispatch) => {
   try {
-     const { data } = await api.signIn(formData);
+     const response = await api.signIn(formData);
+    console.log(response)
 
-     dispatch({ type: SIGN_IN, payload: data })
+  if(response.statusText === 'OK') {
+     dispatch({ type: SIGN_IN, payload: response.data })
 
      history.push('/')
-     window.location.reload()
+  } else {
+      dispatch(errorActionCreator(SIGN_IN_ERROR, response.error))
+    }
   } catch (error) {
-    console.log(error)
+    dispatch(errorActionCreator(SIGN_IN_ERROR, error))
   }
 }
 // logout action
@@ -42,5 +46,16 @@ export const logOut = () => async (dispatch) => {
 
   } catch (error) {
    console.log(error) 
+  }
+}
+export const hideSuccess = () => (dispatch) => {
+  dispatch({type: HIDE_SUCCESS})
+}
+
+export const errorActionCreator = (errorType, error) => {
+  return {
+    type: errorType,
+    error: error,
+    payload: null,
   }
 }

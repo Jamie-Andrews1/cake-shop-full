@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import '../styles/style.css'
 import { useDispatch } from 'react-redux';
-import { Link, useHistory, useLocation } from 'react-router-dom';
-// import decode from 'jwt-decode';
+import { Link, useHistory } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { LOG_OUT } from '../actions/types';
 
 export default function Navbar() {
@@ -10,7 +10,7 @@ export default function Navbar() {
 
   const dispatch = useDispatch();
   const history = useHistory();
-  const location = useLocation();
+  const logged = useSelector((state) => state.auth.isSignedIn)
 
   function logout() {
     dispatch({ type: LOG_OUT });
@@ -29,23 +29,18 @@ export default function Navbar() {
       history.push('/auth/signin')
     }
   }
+  
   useEffect(() => {
-    // To remove user if token has expired
-    // const token = user.token
-    // if(token) {
-    //   const decodedToken = decode(token);
 
-    //   if(decodedToken.exp * 1000 < new Date().getTime()) logout();
-    // }
-
-    // setUser(JSON.parse(localStorage.getItem('person')))
-  }, [location]);
+    setUser(JSON.parse(localStorage.getItem('person')))
+     
+  }, [logged]);
 
 
   return (
     <div>
       <nav className="navbar">
-        <span className="user"><h4>{user ? `Logged in as: ${user.data.name}` : 'Not logged in'}</h4>
+        <span className="user"><h4>{user ? `Logged in as: ${user.data.name}`: 'Not logged in' }</h4>
           <button className="button" onClick={() => navBtn()}>{user ? 'Logout' : 'Sign in'}</button>
         </span>
         <ul className="nav">

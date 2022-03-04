@@ -1,10 +1,15 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
-import { deleteCart } from '../actions/cart';
+import { getCart, deleteCart } from '../actions/cart';
 import { Link } from 'react-router-dom';
 
 export default function Cart() {
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getCart())
+    
+  },[dispatch])
 
   const {items} = useSelector((state) => state.cart)
 
@@ -32,7 +37,6 @@ export default function Cart() {
           <div>
   {items
   .map((item) => (
-    <div>
     <div id="cart" className="container" key={item._id}>
       
       <div className="cart-item">
@@ -54,7 +58,6 @@ export default function Cart() {
         </div>
       </div>
     </div>
-        </div>
         )
       )
      }

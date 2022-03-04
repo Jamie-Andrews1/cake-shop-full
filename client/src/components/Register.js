@@ -11,6 +11,7 @@ export default function Auth() {
   async function onSubmit(values){ 
     
     dispatch(register(values, history))
+    
   }
   
   return (
@@ -22,7 +23,7 @@ export default function Auth() {
           validate={values => {
             const errors = {}
             const val = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/
-            if (!values.name < 2) {
+            if (values.name && values.name.length <= 2) {
               errors.name = 'Required'
             }
             if (!val.test(values.email)) {
