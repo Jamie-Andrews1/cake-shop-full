@@ -71,28 +71,28 @@ body {
   width: 100%;
 }
 
-.admin > div.container {
+div.container {
   margin: 40px 10%;
 }
 
-.admin .control {
+.control {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.admin table {
+.table {
   width: 100%;
 }
 
-.admin table th:first-of-type {
+.table th:first-of-type {
   width: 50%;
 }
-.admin table td:first-of-type {
+.table td:first-of-type {
   width: 50%;
 }
 
-.admin table td {
+.table td {
   vertical-align: middle;
 }
 
@@ -106,12 +106,31 @@ body {
   margin-right: 10px;
 }
 
+ .message.is-success{
+  animation: slideIn 5s ease forwards;
+} 
+@keyframes slideIn {
+    0%{
+      transform:translateX(-100%)
+    }
+    30%{
+      transform: translateX(0);
+    }
+    70%{
+      transform: translateX(0);
+    }
+    100%{
+      transform: translateX(-100%);
+    }
+} 
+
 #cart .cart-item h3 {
   margin: 0;
 }
 
 .cart-item {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
 }
@@ -130,7 +149,15 @@ body {
   align-items: center;
   color: gray;
 }
-
+.quantity button{
+  border: none;
+  background-color: transparent;
+  font-size: 1.5rem;
+  margin: 0 10px;
+}
+.quantity button:hover{
+  cursor: pointer;
+}
 .cart-right .field {
   margin-bottom: 0 !important;
 }

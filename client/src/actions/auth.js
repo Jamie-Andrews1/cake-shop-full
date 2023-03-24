@@ -24,7 +24,6 @@ export const register = (formData, history) => async (dispatch) => {
 export const signIn = (formData, history) => async (dispatch) => {
   try {
      const response = await api.signIn(formData);
-    console.log(response)
 
   if(response.statusText === 'OK') {
      dispatch({ type: SIGN_IN, payload: response.data })

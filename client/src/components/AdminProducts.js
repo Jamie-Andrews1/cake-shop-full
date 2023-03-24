@@ -17,9 +17,8 @@ export default function AdminProduct() {
   }
 
   return (
-    <div>
       <div className="columns is-centered">
-        <div className="column is-one-third">
+        <div className="column is-half">
         <div className="control">
           <h1 className="subtitle">Products</h1>
           <Link to="/admin" className="button is-primary">New Product
@@ -58,6 +57,5 @@ export default function AdminProduct() {
         </table>
         </div>
       </div>
-    </div>
   )
 }

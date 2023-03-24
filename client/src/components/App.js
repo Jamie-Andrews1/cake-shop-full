@@ -27,7 +27,9 @@ export default function App() {
 
   return (
     <div>
+      <a  href='/'>
         <header><h2>Our</h2><h1>Store</h1></header>
+      </a>
     <Router history={history}>
       <div>
       <Navbar />

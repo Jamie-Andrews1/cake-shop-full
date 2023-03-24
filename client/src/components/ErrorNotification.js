@@ -15,7 +15,7 @@ function ErrorNotification() {
  return (
  <>
  {isOpen && error && (
- <article className="message is-danger" style={{width:'fit-content'}}>
+ <article className="message is-danger" style={{width:'fit-content',position:"absolute"}}>
  <span className='message-body'>{error.message}</span>
  <button className='button is-danger is-small' onClick={handleClose}>Close Error</button>
  </article>

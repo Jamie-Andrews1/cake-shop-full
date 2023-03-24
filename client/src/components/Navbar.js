@@ -7,7 +7,7 @@ import { LOG_OUT } from '../actions/types';
 
 export default function Navbar() {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('person')))
-
+  
   const dispatch = useDispatch();
   const history = useHistory();
   const logged = useSelector((state) => state.auth.isSignedIn)
