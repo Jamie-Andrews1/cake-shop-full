@@ -106,23 +106,23 @@ div.container {
   margin-right: 10px;
 }
 
- .message.is-success{
+.message.is-success {
   animation: slideIn 5s ease forwards;
-} 
+}
 @keyframes slideIn {
-    0%{
-      transform:translateX(-100%)
-    }
-    30%{
-      transform: translateX(0);
-    }
-    70%{
-      transform: translateX(0);
-    }
-    100%{
-      transform: translateX(-100%);
-    }
-} 
+  0% {
+    transform: translateX(-100%);
+  }
+  30% {
+    transform: translateX(0);
+  }
+  70% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
 
 #cart .cart-item h3 {
   margin: 0;
@@ -149,13 +149,13 @@ div.container {
   align-items: center;
   color: gray;
 }
-.quantity button{
+.quantity button {
   border: none;
   background-color: transparent;
   font-size: 1.5rem;
   margin: 0 10px;
 }
-.quantity button:hover{
+.quantity button:hover {
   cursor: pointer;
 }
 .cart-right .field {
