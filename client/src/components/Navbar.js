@@ -51,7 +51,7 @@ export default function Navbar() {
           <li>
             <Link to="/cart">
               <i
-                class="fa fa-shopping-basket"
+                className="fa fa-shopping-basket"
                 aria-hidden="true"
                 style={{ opacity: bool ? "1" : "" }}
               ></i>
