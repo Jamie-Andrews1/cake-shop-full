@@ -15,14 +15,13 @@ exports.createCart = asyncHandler(async (req, res, next) => {
       itemIndex = cart.items.findIndex(p => p.productId.toString() === productId);
       console.log(itemIndex)
    if(itemIndex > -1){
-
     // if product exist update the quantity
     let productItem = cart.items[itemIndex];
     productItem.quantity+=1;
     productItem.total = parseFloat(productItem.quantity * price);
     cart.items[itemIndex] = productItem;
     } else {
-    // Add new item if product does'nt exist
+    // Add new item if product doesn't exist
     cart.items.push({productId, title, quantity: 1, price, total: parseFloat(quantity * price)})
     cart.subTotal = cart.items.map(item => item.total).reduce((acc, next) => acc + next);
   }
@@ -30,7 +29,7 @@ exports.createCart = asyncHandler(async (req, res, next) => {
   return res.status(201).json({
     success: true
           }); 
-   }else{
+   } else {
     // Create new cart
   const newCart = await Cart.create({
     user: user.id,
