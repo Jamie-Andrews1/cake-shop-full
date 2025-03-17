@@ -1,5 +1,12 @@
-Small simple looking single page shop using react, redux front end, node express backend. mongoDb for storage. 
+# Mini Shop 
 
-can register an account, login and logout. 
+Small E-commerce app using jwt tokens for authentication with mongoDb database. 
 
 Full CRUD functionality for product creation. 
+
+## Built Using 
+- React
+- Node js
+- Express
+- Redux
+- mongoDb
